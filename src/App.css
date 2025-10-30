@@ -1,0 +1,61 @@
+@import "tailwindcss";
+:root {
+    --border-radius-default: clamp(1rem, 1vw, 3rem);
+    --large-text: clamp(1rem, 0.5vw + 1rem, 2rem);
+    --small-text: clamp(1rem, 0.1vw + 1rem, 1.25rem);
+    --big-heading: clamp(2rem, 3.5vw + 1rem, 9rem);
+    --heading: clamp(2rem, 2.5vw + 1rem, 7rem);
+    --sub-heading: clamp(1.3rem, 1vw + 1rem, 3rem);
+    --icon-font-size: clamp(1rem, 2vw + 1rem, 3rem);
+    --default-white: #f0f0f0;
+    --default-black: rgb(32, 30, 30);
+    --default-gray: #dadadc;
+    --default-dark-gray: #737373;
+    --default-light-gradient: linear-gradient(
+        45deg,
+        #fd5c6c 10%,
+        #ffe0bd 50%,
+        #ff88ca 100%
+    );
+    --small-black-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    --small-white-text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    --portrait-height: 500px;
+    --gradient-first-color: hsl(222deg 43% 9%);
+    --gradient-second-color: hsl(217deg 47% 24%);
+    --gradient-third-color: hsl(173deg 70% 35%);
+    --default-gradient: linear-gradient(
+        to bottom,
+        hsl(222deg 43% 9%) 0%,
+        hsl(217deg 47% 24%) 50%,
+        hsl(173deg 70% 35%) 100%
+    );
+    --default-gradient2: linear-gradient(to bottom, #ff2e43, #ff239c, #ffe0bd);
+}
+@keyframes text-up {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+@keyframes text-down {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+* {
+    box-sizing: border-box;
+}
+body,
+html,
+#root {
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease-out;
+
+    background-color: black;
+}

@@ -1,0 +1,24 @@
+.text {
+    font-size: var(--large-text);
+    padding: 0;
+    margin: 0;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+.text::selection {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.text::-moz-selection {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.text *::selection {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.text *::-moz-selection {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
