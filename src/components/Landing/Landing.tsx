@@ -6,7 +6,7 @@ function Landing() {
 
     return (
         <div
-            className={`flex flex-row w-full h-dvh bg-[#191919] justify-center items-center `}
+            className={`flex flex-row w-full min-h-dvh bg-[#191919] justify-center items-center p-4 pb-8`}
         >
             {loggedIn ? (
                 <MainDashboard></MainDashboard>

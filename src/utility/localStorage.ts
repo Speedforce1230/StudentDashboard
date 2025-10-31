@@ -5,10 +5,13 @@ export type user = {
     role: "student" | "admin";
 };
 export type assignment = {
+    id: string;
     title: string;
+    submission: string;
     description: string;
 };
 export type submission = {
+    assignmentId: string;
     student: string;
     submitted: boolean;
 };
@@ -58,15 +61,44 @@ export function getSubmissions(): submission[] {
     if (!submissions) return [];
     return JSON.parse(submissions);
 }
+export function getSubmissionFromAssignment(id: string): submission[] {
+    const submissions = getSubmissions();
+    const submittedBy = submissions.filter(
+        (submission) => submission.assignmentId === id
+    );
+    return submittedBy;
+}
 export function addAssignment(newAssignment: assignment) {
     const assignments = getAssignments();
-    assignments.push(newAssignment);
+    assignments.unshift(newAssignment);
     window.localStorage.setItem("assignments", JSON.stringify(assignments));
     return getAssignments();
 }
 export function addSubmission(newSubmission: submission) {
     const submissions = getSubmissions();
-    submissions.push(newSubmission);
-    window.localStorage.setItem("submissions", JSON.stringify(submissions));
+    // Prevents re-submissions from same student.
+    const submitted = submissions.find(
+        (sub) =>
+            sub.assignmentId === newSubmission.assignmentId &&
+            sub.student === newSubmission.student
+    );
+    if (!submitted) {
+        submissions.push(newSubmission);
+        window.localStorage.setItem("submissions", JSON.stringify(submissions));
+        return getSubmissions();
+    }
     return getSubmissions();
+}
+export function updateAssignment(id: string, updateAssignment: assignment) {
+    const assignments = getAssignments().map((value) =>
+        value.id === id ? updateAssignment : value
+    );
+    window.localStorage.setItem("assignments", JSON.stringify(assignments));
+    return getAssignments();
+}
+export function deleteAssignment(id: string) {
+    const assignments = getAssignments();
+    const removed = assignments.filter((value) => value.id !== id);
+    window.localStorage.setItem("assignments", JSON.stringify(removed));
+    return getAssignments();
 }

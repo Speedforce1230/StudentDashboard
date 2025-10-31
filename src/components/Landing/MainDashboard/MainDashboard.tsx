@@ -12,10 +12,10 @@ function MainDashboard() {
             </div>
         );
     return (
-        <div className="flex flex-col w-full h-dvh items-center justify-center">
+        <div className="flex flex-col w-full min-h-dvh h-auto  items-center justify-start">
             <Heading fontName="fira code">Welcome, {user.username}</Heading>
 
-            <div className="flex flex-col w-[70%] items-center justify-center">
+            <div className="flex flex-col w-[90%] items-center justify-center">
                 {user.role === "student" ? (
                     <StudentDashboard></StudentDashboard>
                 ) : (
