@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Heading from "../components/Heading";
+import Heading from "../Heading";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 interface TableHeaderListItemProps {
     userRole?: "student" | "admin";
@@ -68,9 +68,9 @@ function TableHeaderListItem({
                                 Submissions
                             </Heading>
                         </div>
-                        <div className="flex gap-1 p-1 items-center justify-center">
+                        <div className="flex gap-1 items-center justify-center w-full h-full">
                             <button
-                                className="text-green-500 transition-colors duration-300 ease-out hover:text-[#38A169] cursor-pointer "
+                                className="text-green-500 transition-colors duration-300 ease-out hover:text-[#f0f0f0] hover:bg-[#38a169] cursor-pointer w-full h-full"
                                 title="Add Assignment"
                                 onClick={handleAddTask}
                             >

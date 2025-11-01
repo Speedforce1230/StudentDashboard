@@ -7,10 +7,10 @@ import {
     type submission,
 } from "../../../../utility/localStorage";
 import Heading from "../../../Heading";
-import AssignmentListItem from "../../../../AssignmentListItem/AssignmentListItem";
+import AssignmentListItem from "../../../AssignmentListItem/AssignmentListItem";
 import useAuth from "../../../../utility/useAuth";
 import PopupModal from "../../../PopupModal/PopupModal";
-import TableHeaderListItem from "../../../../AssignmentListItem/TableHeaderListItem";
+import TableHeaderListItem from "../../../AssignmentListItem/TableHeaderListItem";
 function StudentDashboard() {
     const [assignments, setAssignments] = useState<assignment[]>([]);
     const [submissions, setSubmissions] = useState<submission[]>([]);
@@ -72,6 +72,16 @@ function StudentDashboard() {
             </Heading>
             <ul className="flex w-full flex-col items-start justify-start bg-[#323131] rounded-(--border-radius-default) p-4">
                 <TableHeaderListItem userRole="student"></TableHeaderListItem>
+                {assignments.length === 0 && (
+                    <Heading
+                        fontName="fira code"
+                        fontSize="var(--sub-heading)"
+                        headingLevel="h4"
+                        className="self-center"
+                    >
+                        There are no pending assignments.
+                    </Heading>
+                )}
                 {assignments.map((assignment) => (
                     <AssignmentListItem
                         role="student"
@@ -91,6 +101,16 @@ function StudentDashboard() {
                     submittedAsStudent
                     userRole="student"
                 ></TableHeaderListItem>
+                {submittedAssignments.length === 0 && (
+                    <Heading
+                        fontName="fira code"
+                        fontSize="var(--sub-heading)"
+                        headingLevel="h4"
+                        className="self-center"
+                    >
+                        There are no completed assignments.
+                    </Heading>
+                )}
                 {submittedAssignments.map((assignment) => (
                     <AssignmentListItem
                         alreadySubmitted={true}

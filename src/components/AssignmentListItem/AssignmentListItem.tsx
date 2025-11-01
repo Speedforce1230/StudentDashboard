@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import getFontClasses from "../utility/getFont";
-import BaseText from "../components/BaseText";
+import getFontClasses from "../../utility/getFont";
+import BaseText from "../BaseText";
 import {
     faCheck,
     faCopy,
@@ -16,7 +16,7 @@ import {
     updateAssignment,
     type assignment,
     type submission,
-} from "../utility/localStorage";
+} from "../../utility/localStorage";
 interface AssignmentListItemProps {
     assignment: assignment;
     role: "admin" | "student";
@@ -90,9 +90,10 @@ function AssignmentListItem({
     };
     const submissionsTotal = submissions.filter((sub) => sub.submitted).length;
     const submissionsLength = submissions.length;
-    const submissionsPercentage = `${Math.round(
-        (submissionsTotal / submissionsLength) * 100
-    )}%`;
+    const submissionsPercentage =
+        submissionsLength > 0
+            ? Math.round((submissionsTotal / submissionsLength) * 100)
+            : 100;
     return (
         <li
             className={`flex items-center w-full overflow-hidden gap-2 ${
@@ -130,6 +131,7 @@ function AssignmentListItem({
                         <BaseText
                             fontName="fira code"
                             fontSize="var(--large-text)"
+                            textColor="inherit"
                             fontWeight={500}
                         >
                             {assignment.title}
@@ -193,7 +195,9 @@ function AssignmentListItem({
                                         "w-full absolute h-4 bg-green-500 rounded-(--border-radius-default)"
                                     }
                                     style={{
-                                        transform: `translateX(-${submissionsPercentage})`,
+                                        transform: `translateX(-${
+                                            100 - submissionsPercentage
+                                        }%)`,
                                     }}
                                 ></div>
                             </div>
@@ -201,8 +205,9 @@ function AssignmentListItem({
                             <BaseText
                                 fontName="fira code"
                                 fontSize="var(--small-text)"
+                                textColor="inherit"
                             >
-                                {submissionsPercentage}
+                                {submissionsPercentage}%
                             </BaseText>
                         </li>
                         {submissions.map((value, index) => (

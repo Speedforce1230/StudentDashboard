@@ -5,8 +5,8 @@ import {
     type assignment,
 } from "../../../../utility/localStorage";
 import Heading from "../../../Heading";
-import AssignmentListItem from "../../../../AssignmentListItem/AssignmentListItem";
-import TableHeaderListItem from "../../../../AssignmentListItem/TableHeaderListItem";
+import AssignmentListItem from "../../../AssignmentListItem/AssignmentListItem";
+import TableHeaderListItem from "../../../AssignmentListItem/TableHeaderListItem";
 
 function AdminDashboard() {
     const [assignments, setAssignments] = useState<assignment[]>([]);
@@ -50,7 +50,17 @@ function AdminDashboard() {
                     userRole="admin"
                     handleAddTask={handleAddTask}
                 ></TableHeaderListItem>
-
+                {assignments.length === 0 && (
+                    <Heading
+                        fontName="fira code"
+                        fontSize="var(--sub-heading)"
+                        headingLevel="h4"
+                        className="self-center"
+                    >
+                        There are no assignments. Click on the Plus icon to add
+                        some!
+                    </Heading>
+                )}
                 {assignments.map((assignment) => (
                     <AssignmentListItem
                         role="admin"
