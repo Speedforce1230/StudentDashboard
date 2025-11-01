@@ -7,7 +7,7 @@
     justify-content: center;
     gap: 1rem;
     color: var(--text-color);
-    z-index: 1000;
+    z-index: 0;
 }
 .heading::selection,
 .heading b::selection {

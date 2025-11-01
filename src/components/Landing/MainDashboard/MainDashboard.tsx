@@ -12,7 +12,7 @@ function MainDashboard() {
             </div>
         );
     return (
-        <div className="flex flex-col w-full min-h-dvh h-auto  items-center justify-start">
+        <div className="flex flex-col w-full min-h-dvh h-auto  items-center justify-start relative z-0">
             <Heading fontName="fira code">Welcome, {user.username}</Heading>
 
             <div className="flex flex-col w-[90%] items-center justify-center">

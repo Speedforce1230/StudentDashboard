@@ -7,7 +7,7 @@ export type user = {
 export type assignment = {
     id: string;
     title: string;
-    submission: string;
+    link: string;
     description: string;
 };
 export type submission = {
@@ -70,8 +70,19 @@ export function getSubmissionFromAssignment(id: string): submission[] {
 }
 export function addAssignment(newAssignment: assignment) {
     const assignments = getAssignments();
+    const students = getAllowedUsers().filter(
+        (student) => student.role === "student"
+    );
     assignments.unshift(newAssignment);
     window.localStorage.setItem("assignments", JSON.stringify(assignments));
+    students.map((student) => {
+        const newSubmission: submission = {
+            assignmentId: newAssignment.id,
+            student: student.username,
+            submitted: false,
+        };
+        addSubmission(newSubmission);
+    });
     return getAssignments();
 }
 export function addSubmission(newSubmission: submission) {
@@ -88,6 +99,23 @@ export function addSubmission(newSubmission: submission) {
         return getSubmissions();
     }
     return getSubmissions();
+}
+export function markSubmission(
+    assignmentId: string,
+    student: string
+): submission[] {
+    const submissions = getSubmissions();
+    const newSubmissions = submissions.map((submission) => {
+        if (
+            student === submission.student &&
+            assignmentId === submission.assignmentId
+        ) {
+            return { ...submission, submitted: true };
+        }
+        return submission;
+    });
+    window.localStorage.setItem("submissions", JSON.stringify(newSubmissions));
+    return newSubmissions;
 }
 export function updateAssignment(id: string, updateAssignment: assignment) {
     const assignments = getAssignments().map((value) =>

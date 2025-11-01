@@ -9,6 +9,7 @@ interface InputEntryProps {
     type?: HTMLInputTypeAttribute;
     readOnly?: boolean;
     value?: string;
+    defaultValue?: string;
 }
 function InputEntry({
     ref = null,
@@ -17,6 +18,7 @@ function InputEntry({
     onChange = () => {},
     readOnly = false,
     type = "text",
+    defaultValue = "",
 }: InputEntryProps) {
     const font = getFontClasses("fira code");
     return (
@@ -26,7 +28,8 @@ function InputEntry({
             style={style}
             readOnly={readOnly}
             type={type}
-            className={`${className} w-full appearance-none p-2 focus:outline-none relative flex items-start justify-center rounded-md transition-color duration-300 ease-out  border-2 border-[#696969]  not-focus:bg-[#323131] not-focus:text-[#f0f0f0] focus:bg-[#f0f0f0] focus:text-[--default-black] hover:bg-[#595757] ${font}`}
+            defaultValue={defaultValue}
+            className={`w-full appearance-none p-2 focus:outline-none relative flex items-start justify-center rounded-md transition-color duration-300 ease-out  border-2 border-[#696969]  not-focus:bg-[#323131] not-focus:text-[#f0f0f0] focus:bg-[#f0f0f0] focus:text-[--default-black] hover:bg-[#595757]  ${font} ${className}`}
         ></input>
     );
 }
